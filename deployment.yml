@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat
+  template:
+    metadata:
+      labels:
+        app: chat
+    spec:
+      containers:
+      - name: chat
+        image: shandroid19/interact-chat:latest
+        ports:
+        - containerPort: 8900
+        env:
+        - name: FRONTEND_URL
+          value: ${{ secrets.FRONTEND_URL}}
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat
+spec:
+  type: NodePort
+  selector:
+    app: chat
+  ports:
+  - port: 8900
+    targetPort: 8900
+    nodePort: 30102

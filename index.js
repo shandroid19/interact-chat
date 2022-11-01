@@ -1,8 +1,7 @@
 const PORT = process.env.PORT || 8900;
 const io = require('socket.io')(PORT,{
     cors:{
-        // origin:'http://localhost:3000',
-        origin:'https://interact-3d602.web.app',
+        origin: process.env.FRONTEND_URL,
     },
 })
 var users=[]
