@@ -19,7 +19,7 @@ spec:
         - containerPort: 8900
         env:
         - name: FRONTEND_URL
-          value: ${{ secrets.FRONTEND_URL}}
+          value: ${ FRONTEND_URL}
 
 
 ---
